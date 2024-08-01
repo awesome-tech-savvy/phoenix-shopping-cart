@@ -21,6 +21,14 @@ defmodule HelloWeb.HelloHTML do
         </tr>
         <% end %>
       </table>
+      <%= raw "<strong>End</strong>" %>
+      <ul>
+        <%= for {item, index} <- Enum.with_index(1..10) do %>
+          <li class={"bg-#{if rem(index, 2) == 0, do: 'black', else: 'white'}"}>
+            <%= item %>
+          </li>
+        <% end %>
+      </ul>
     </div>
     """
   end
