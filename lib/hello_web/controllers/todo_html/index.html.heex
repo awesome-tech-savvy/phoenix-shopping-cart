@@ -1,0 +1,26 @@
+<.header>
+  Todo List
+  <:actions>
+    <.link href={~p"/todos"} method="get">
+      <.button>Refresh List</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.simple_form :let={f} for={@changeset} action={~p"/todos"} method="post">
+  <.input field={f[:text]} type="text" label="New Todo" required />
+  <:actions>
+    <.button>Add Todo</.button>
+  </:actions>
+</.simple_form>
+
+<ul>
+  <%= for todo <- @todos do %>
+    <li>
+      <%= todo.text %> 
+      <.link href={~p"/todos/#{todo.id}"} method="delete" class="delete">
+        Delete
+      </.link>
+    </li>
+  <% end %>
+</ul>
